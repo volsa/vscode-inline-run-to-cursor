@@ -6,6 +6,11 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ## [Unreleased]
 
+## [0.1.1] - 2025-06-29
+
+### Added
+- Extension icon (assets/icon.png) for VS Code marketplace
+
 ## [0.1.0] - 2025-06-29
 
 ### Added
