@@ -1,0 +1,58 @@
+{
+  "name": "vscode-inline-run-to-cursor",
+  "displayName": "Inline Run to Cursor",
+  "description": "Displays an inline button to run to cursor during debugging sessions",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.101.0"
+  },
+  "categories": [
+    "Debuggers"
+  ],
+  "activationEvents": [
+    "*"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "vscode-inline-run-to-cursor.runToCursor",
+        "title": "Run to Cursor"
+      }
+    ],
+    "configuration": {
+      "title": "Inline Run to Cursor",
+      "properties": {
+        "inline-run-to-cursor.enabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable inline run to cursor functionality"
+        },
+        "inline-run-to-cursor.buttonText": {
+          "type": "string",
+          "default": "▶️ Run to Cursor",
+          "description": "Text displayed on the inline button"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src",
+    "test": "vscode-test"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.101.0",
+    "@types/mocha": "^10.0.10",
+    "@types/node": "20.x",
+    "@typescript-eslint/eslint-plugin": "^8.31.1",
+    "@typescript-eslint/parser": "^8.31.1",
+    "eslint": "^9.25.1",
+    "typescript": "^5.8.3",
+    "@vscode/test-cli": "^0.0.10",
+    "@vscode/test-electron": "^2.5.2"
+  }
+}
