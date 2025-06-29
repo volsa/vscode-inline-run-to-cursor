@@ -2,7 +2,7 @@
   "name": "vscode-inline-run-to-cursor",
   "displayName": "Inline Run to Cursor",
   "description": "Displays an inline button to run to cursor during debugging sessions",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "publisher": "volsa",
   "engines": {
     "vscode": "^1.101.0"
@@ -51,14 +51,16 @@
     "test": "vscode-test"
   },
   "devDependencies": {
-    "@types/vscode": "^1.101.0",
     "@types/mocha": "^10.0.10",
     "@types/node": "20.x",
+    "@types/sinon": "^17.0.4",
+    "@types/vscode": "^1.101.0",
     "@typescript-eslint/eslint-plugin": "^8.31.1",
     "@typescript-eslint/parser": "^8.31.1",
-    "eslint": "^9.25.1",
-    "typescript": "^5.8.3",
     "@vscode/test-cli": "^0.0.10",
-    "@vscode/test-electron": "^2.5.2"
+    "@vscode/test-electron": "^2.5.2",
+    "eslint": "^9.25.1",
+    "sinon": "^21.0.0",
+    "typescript": "^5.8.3"
   }
 }

@@ -17,13 +17,19 @@ This is a VS Code extension that enhances debugging by providing inline "Run to 
 **Core Components:**
 - `src/extension.ts` - Single-file architecture containing all functionality
 - `DebugCodeLensProvider` class - Implements VS Code's CodeLens interface
+- `RunToCursorManager` class - Custom breakpoint-based run to cursor implementation
 - Event listeners for cursor movement and debug session changes
 
 **Key Workflow:**
 1. Extension activates only during debugging sessions (`onDebugInitialConfigurations`, `onDebugResolve`)
 2. CodeLens provider displays "▶️ Run to Cursor" button on current line
 3. Real-time updates as user moves cursor or debug session changes
-4. Executes VS Code's built-in `editor.debug.action.runToCursor` command when clicked
+4. Custom breakpoint implementation that bypasses intermediate breakpoints:
+   - Stores current breakpoint states
+   - Temporarily removes all existing breakpoints
+   - Adds temporary breakpoint at target line
+   - Continues execution
+   - Automatically restores original breakpoints on completion/termination
 
 **Output Directory:** `out/` contains compiled JavaScript files
 
@@ -41,9 +47,11 @@ This is a VS Code extension that enhances debugging by providing inline "Run to 
 
 - Single TypeScript file architecture for simplicity
 - Uses ES2022 with Node16 modules and strict type checking
-- Testing setup uses VS Code's official test framework with Mocha
+- Testing setup uses VS Code's official test framework with Mocha and Sinon
 - Performance-optimized: only active during debugging sessions
 - Real-time responsiveness through event-driven updates
+- Custom breakpoint management ensures reliable execution to target line
+- Robust cleanup mechanisms handle all termination scenarios
 
 ## Commit Guidelines
 
