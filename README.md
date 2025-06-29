@@ -9,8 +9,6 @@ Inline Run to Cursor is a VS Code extension that displays a convenient button to
 
 This extension simplifies the workflow by showing an inline button you can simply click to run to that line. If you come from an IDE such as IntelliJ IDEA or Visual Studio, this feature should feel familiar and natural.
 
-## Demo
-
 
 https://github.com/user-attachments/assets/a4beaa12-8ae3-4f94-8551-3377dac804df
 
