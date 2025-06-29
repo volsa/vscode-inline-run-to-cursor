@@ -6,4 +6,10 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ## [Unreleased]
 
-- Initial release
+### Added
+- CLAUDE.md development guide with architecture overview and commit guidelines
+- Repository configuration in package.json
+- Optimized activation events for debugging sessions only
+
+### Changed
+- Improved CLAUDE.md structure and documentation format

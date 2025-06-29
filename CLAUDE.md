@@ -2,53 +2,50 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
-## Commands
+## Development Commands
 
-- **Build**: `npm run compile` - Compiles TypeScript to JavaScript in the `out/` directory
-- **Watch mode**: `npm run watch` - Continuously compiles on file changes during development
-- **Lint**: `npm run lint` - Runs ESLint on TypeScript files in `src/`
-- **Test**: `npm run test` - Runs the test suite using vscode-test
-- **Pre-test**: `npm run pretest` - Compiles and lints before running tests
-- **Package for publishing**: `npm run vscode:prepublish` - Prepares extension for VS Code marketplace
+- `npm run compile` - Compile TypeScript to JavaScript
+- `npm run watch` - Watch for changes and auto-compile
+- `npm run lint` - Run ESLint on source code
+- `npm run test` - Run the test suite using VS Code test framework
+- `npm run vscode:prepublish` - Pre-publish compilation step
 
-## Git Workflow
+## Architecture Overview
 
-- **Always update CHANGELOG.md before committing** - Document all changes, fixes, and new features
-- **Use semantic commit style** - First line should be a concise description using prefixes like `feat:`, `fix:`, `docs:`, `refactor:`, etc.
+This is a VS Code extension that enhances debugging by providing inline "Run to Cursor" buttons. The architecture is event-driven and uses VS Code's CodeLens API:
 
-## Architecture
+**Core Components:**
+- `src/extension.ts` - Single-file architecture containing all functionality
+- `DebugCodeLensProvider` class - Implements VS Code's CodeLens interface
+- Event listeners for cursor movement and debug session changes
 
-This is a VS Code extension that provides IntelliJ-style "Run to Cursor" debugging functionality through inline CodeLens buttons.
+**Key Workflow:**
+1. Extension activates only during debugging sessions (`onDebugInitialConfigurations`, `onDebugResolve`)
+2. CodeLens provider displays "▶️ Run to Cursor" button on current line
+3. Real-time updates as user moves cursor or debug session changes
+4. Executes VS Code's built-in `editor.debug.action.runToCursor` command when clicked
 
-### Core Components
+**Output Directory:** `out/` contains compiled JavaScript files
 
-1. **DebugCodeLensProvider** (`src/extension.ts:3-47`): Custom CodeLens provider that displays inline "▶️ Run to Cursor" buttons on the current cursor line during debug sessions. Key features:
-   - Only shows during active debug sessions
-   - Follows cursor movement in real-time
-   - Configurable via `inline-run-to-cursor.enabled` setting
+## Extension Configuration
 
-2. **Command Handler** (`src/extension.ts:59-89`): Handles the `vscode-inline-run-to-cursor.runToCursor` command by:
-   - Opening the target document
-   - Positioning cursor at the specified line
-   - Executing VS Code's built-in `editor.debug.action.runToCursor` command
+**Activation Events:** Only activates during debugging to minimize resource usage
 
-3. **Event Listeners** (`src/extension.ts:92-99`): Refreshes CodeLens display when:
-   - Text editor selection changes (cursor movement)
-   - Debug session state changes (start/stop debugging)
+**User Settings:**
+- `inline-run-to-cursor.enabled` (boolean, default: true)
+- `inline-run-to-cursor.buttonText` (string, default: "▶️ Run to Cursor")
 
-### Configuration
+**Commands:** `vscode-inline-run-to-cursor.runToCursor`
 
-The extension uses VS Code's configuration system with the `inline-run-to-cursor` namespace:
-- `inline-run-to-cursor.enabled`: Enable/disable functionality (default: true)
-- `inline-run-to-cursor.buttonText`: Customize button text (default: "▶️ Run to Cursor")
+## Development Notes
 
-### TypeScript Configuration
+- Single TypeScript file architecture for simplicity
+- Uses ES2022 with Node16 modules and strict type checking
+- Testing setup uses VS Code's official test framework with Mocha
+- Performance-optimized: only active during debugging sessions
+- Real-time responsiveness through event-driven updates
 
-- Target: ES2022 with Node16 modules
-- Strict type checking enabled
-- Source maps generated for debugging
-- Output directory: `out/`
+## Commit Guidelines
 
-### Testing
-
-Uses `@vscode/test-cli` and `@vscode/test-electron` for VS Code extension testing. Test files are located in `src/test/`.
+- Use semantic commit messages (feat:, fix:, docs:, style:, refactor:, test:, chore:)
+- Always update CHANGELOG.md with a new entry when committing changes
