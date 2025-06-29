@@ -10,7 +10,10 @@ This extension simplifies the workflow by showing an inline button you can simpl
 
 ## Demo
 
-https://github.com/user-attachments/assets/your-demo-video.webm
+
+https://github.com/user-attachments/assets/a4beaa12-8ae3-4f94-8551-3377dac804df
+
+
 
 ## Installation
 
