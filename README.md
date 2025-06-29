@@ -1,4 +1,5 @@
 # Inline Run to Cursor
+https://marketplace.visualstudio.com/items?itemName=volsa.vscode-inline-run-to-cursor
 
 Inline Run to Cursor is a VS Code extension that displays a convenient button to run to the current line when in debug mode. While VS Code provides such functionality, it's quite tedious from a UX perspective, as you have to either:
 
