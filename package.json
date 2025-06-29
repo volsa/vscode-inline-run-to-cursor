@@ -2,7 +2,7 @@
   "name": "vscode-inline-run-to-cursor",
   "displayName": "Inline Run to Cursor",
   "description": "Displays an inline button to run to cursor during debugging sessions",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "publisher": "volsa",
   "engines": {
     "vscode": "^1.101.0"
